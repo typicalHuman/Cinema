@@ -1,0 +1,118 @@
+﻿<Page x:Class="Cinema.Scripts.View.FlterMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cinema"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="FlterMenuPage" Foreground="White" FontFamily="Courier New"
+      FontSize="20" DataContext="{x:Static local:App.FilterMenuPageVM}"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+    <Grid Background="#1b1c1b" >
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <!--#region YearInterval -->
+                <StackPanel>
+                    <TextBlock Text="Year Interval:" Margin="5 5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox materialDesign:HintAssist.Hint="From"
+                         materialDesign:TextFieldAssist.UnderlineBrush="White"
+                         CaretBrush="White" Margin="5 0"
+                         BorderBrush="#F2E5D7" MaxLength="4" Width="50"
+                             PreviewTextInput="TextBox_PreviewTextInput"
+                             Text="{Binding Year1, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Column="1" materialDesign:HintAssist.Hint="To"
+                         materialDesign:TextFieldAssist.UnderlineBrush="White"
+                         CaretBrush="White" Margin="5 0"
+                         BorderBrush="#F2E5D7" MaxLength="4" Width="50"
+                             PreviewTextInput="TextBox_PreviewTextInput"
+                             Text="{Binding Year2, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region TitleType -->
+                <StackPanel Margin="10 0">
+                    <TextBlock Text="Title Type:" Margin="0 5"/>
+                    <StackPanel>
+                        <CheckBox Margin="0 5" 
+                              Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                               IsChecked="{Binding IsMovie}" >
+                            Movie
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding MovieCheck}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <i:InvokeCommandAction Command="{Binding UnCheck}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </CheckBox>
+                        <CheckBox  Margin="0 5" 
+                              Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                              IsChecked="{Binding IsSeries}">
+                            Series
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding SeriesCheck}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <i:InvokeCommandAction Command="{Binding UnCheck}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </CheckBox>
+                    </StackPanel>
+                </StackPanel>
+                <!--#endregion-->
+            </StackPanel>
+            <TextBlock Text="Genres:" Margin="0 20 0 0"/>
+            <StackPanel Orientation="Horizontal" >
+                <ListBox ItemsSource="{Binding BoxGenres1}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                                      Content="{Binding Path=Genre}" Foreground="White">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                               CommandParameter="{Binding Path=Genre}"/>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="Unchecked">
+                                        <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                               CommandParameter="{Binding Path=Genre}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                    <ListBox ItemsSource="{Binding BoxGenres2}" Margin="100 0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                                      Content="{Binding Path=Genre}" Foreground="White">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                               CommandParameter="{Binding Path=Genre}"/>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="Unchecked">
+                                        <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                               CommandParameter="{Binding Path=Genre}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                </StackPanel>
+
+
+        </StackPanel>
+
+    </Grid>
+</Page>

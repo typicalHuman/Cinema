@@ -1,0 +1,261 @@
+﻿<Window x:Class="Cinema.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cinema"
+        mc:Ignorable="d"
+        Title="MainWindow" MinHeight="750" MinWidth="650"
+        Width="550" Height="550"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        DataContext="{x:Static local:App.MainVM}"
+        ResizeMode="{Binding ResizeMode}"
+        WindowState="{Binding WindowState}"
+        BorderThickness="{Binding WindowBorderThickness}"
+        WindowStyle="None"
+        BorderBrush="#F2E5D7"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Foreground="White" FontFamily="Courier New" FontSize="25"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="51"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="51"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+        CaptionHeight="0"
+        ResizeBorderThickness="7"/>
+    </WindowChrome.WindowChrome>
+    <Grid Background="#1b1c1b">
+        
+        <!--#region GridDefinitions -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="51"/>
+            <ColumnDefinition Width="51"/>
+            <ColumnDefinition Width="51"/>
+            <ColumnDefinition Width="51"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+
+        <!--#region WindowManipulationButtons -->
+
+        <!--#region CloseButton-->
+        <Button Grid.Column="6" Width="51" Height="40"  Padding="5"
+                BorderThickness="0" BorderBrush="Transparent"
+                ToolTip="Close" Content="{materialDesign:PackIcon Kind=Close,Size=25}" 
+                Style="{StaticResource CloseButtonStyle}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction Command="{Binding CloseCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+
+        <!--#endregion-->
+
+        <!--#region MinimizeButton-->
+        <Button Grid.Column="4" Height="40" Width="51"
+                ToolTip="Minimize" Style="{StaticResource MaximizeButtonStyle}"
+                Content="{materialDesign:PackIcon Kind=WindowMinimize,Size=25}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction 
+                Command="{Binding MinimizeCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        <!--#endregion-->
+
+        <!--#region MaximizeButton-->
+        <Button Grid.Column="5" Height="40" Width="51"
+                ToolTip="Maximize" Style="{StaticResource MaximizeButtonStyle}"
+                Content="{materialDesign:PackIcon Kind=WindowMaximize,Size=25}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction 
+                Command="{Binding MaximizeCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        <!--#endregion-->
+
+        <!--#endregion-->
+
+        <!--#region Search -->
+        <TextBox Foreground="White" Background="#1b1c1b" Grid.Column="1" Grid.ColumnSpan="2"
+                 FontSize="27" Margin="5 0"
+                 BorderBrush="#F2E5D7" materialDesign:HintAssist.Hint="Search IMDb"
+                 materialDesign:TextFieldAssist.UnderlineBrush="White"
+                 CaretBrush="White" IsEnabled="{Binding IsMenuClosed}"
+                 MaxLength="50">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" 
+                            CommandParameter="Scripts/View/SearchPage.xaml"
+                            />
+            </TextBox.InputBindings>
+        </TextBox>
+        <Button Width="51" Height="40" Style="{StaticResource MaximizeButtonStyle}"
+                    Content="{materialDesign:PackIcon Kind=Search,Size=25}"
+                    Grid.Column="3" ToolTip="Search" Margin="1" VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                     IsEnabled="{Binding IsMenuClosed}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction Command="{Binding SearchCommand}"
+                                           CommandParameter="Scripts/View/SearchPage.xaml"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+
+        <!--#endregion-->
+
+        <!--#region Menu -->
+        <Grid Name="GridMenu" Width="51" HorizontalAlignment="Left" Background="#282828"
+              Grid.Column="0" Grid.RowSpan="2" Grid.Row="0" Grid.ColumnSpan="3" Panel.ZIndex="3">
+            <StackPanel>
+                <Grid Height="40" Background="White">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <!--#region MenuManipulationButtons -->
+                    <Button Name="ButtonOpenMenu" Height="40" Width="51" HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                            Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E"
+                            Visibility="{Binding OpenMenuVisibility}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding OpenSideCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                    </Button>
+                    <Button Height="40" Width="51" Name="ButtonCloseMenu"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" 
+                            Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                            Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E"
+                            Visibility="{Binding CloseMenuVisibility}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding CloseSideCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                    </Button>
+                    <!--#endregion-->   
+                </Grid>
+                <!--#region MenuItems -->
+                <ListView Foreground="#FF5C99D6" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          FontSize="16" SelectedIndex="{Binding SelectedIndex}">
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="MovieSearchOutline" Height="25" Margin="5 0" Width="25" 
+                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     />
+                            <TextBlock Text="Search" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
+                                                       CommandParameter="Scripts/View/SearchPage.xaml"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FilterMenu" Height="25" Margin="5 0" Width="25" 
+                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     />
+                            <TextBlock Text="Filter Menu" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
+                                                       CommandParameter="Scripts/View/FilterMenuPage.xaml"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal" >
+                            <materialDesign:PackIcon Kind="Wunderlist" Height="25"
+                                                      Margin="5 0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Text="Watched List" VerticalAlignment="Center" 
+                                       Margin="10 0" />
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
+                                                       CommandParameter="Scripts/View/WatchedListPage.xaml"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     Margin="5 0"/>
+                            <TextBlock Text="Settings" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
+                                                       CommandParameter="Scripts/View/SettingsPage.xaml"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="OpenInBrowser" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     Margin="5 0"/>
+                            <TextBlock Text="IMDb" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding GotoSite}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                </ListView>
+                <!--#endregion-->
+            </StackPanel>
+        </Grid>
+
+        <!--#region NavigationControl -->
+        <Frame NavigationUIVisibility="Hidden" x:Name="Frame1" 
+               Source="SearchPage.xaml" 
+               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6"></Frame>
+        <!--#endregion-->
+        
+        <!--#endregion-->
+        
+    </Grid>
+</Window>
