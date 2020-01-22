@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using static Cinema.Scripts.Model.BoxGenres;
+using System.Windows;
+using static Cinema.Scripts.Model.TitleInfo;
 
 namespace Cinema.Scripts.ViewModel
 {
@@ -17,10 +17,8 @@ namespace Cinema.Scripts.ViewModel
 
         public FilterMenuPageVM()
         {
-            BoxGenres1 = new ObservableCollection<BoxGenres>();
-            BoxGenres2 = new ObservableCollection<BoxGenres>();
-            Genres = new ObservableCollection<BoxGenres>();
-            SetBoxesGenres();
+            Genres = new ObservableCollection<TitleGenres>();
+            new Parsing().GetFilm("pulp fiction");
         }
 
         #endregion
@@ -38,7 +36,7 @@ namespace Cinema.Scripts.ViewModel
                 {
                     IsSeries = false;
                     IsMovie = true;
-                    Type = TitleType.Movie;
+                    Type = TitleTypes.Movie;
                 }));
             }
         }
@@ -55,7 +53,7 @@ namespace Cinema.Scripts.ViewModel
                 {
                     IsSeries = true;
                     IsMovie = false;
-                    Type = TitleType.Series;
+                    Type = TitleTypes.Series;
                 }));
             }
         }
@@ -71,13 +69,59 @@ namespace Cinema.Scripts.ViewModel
                 {
                     IsMovie = false;
                     IsSeries = false;
-                    Type = TitleType.Movie;
+                    Type = TitleTypes.Movie;
                 }));
             }
         }
 
         #endregion
 
+        #region GenreCheck
+
+        private TitleGenres[] allGenreValues = (TitleGenres[])Enum.GetValues(typeof(TitleGenres));
+
+        private int GetItemIndex(TitleGenres genre)
+        {
+            for (int i = 0; i < Genres.Count; i++)
+                if (genre == Genres[i])
+                    return i;
+            return -1;
+        }
+
+        private RelayCommand genreCheck;
+        public RelayCommand GenreCheck
+        {
+            get
+            {
+                return genreCheck ?? (genreCheck = new RelayCommand(obj =>
+                {
+                    foreach (TitleGenres title in allGenreValues)
+                        if (title.ToString() == obj.ToString())
+                            App.FilterMenuPageVM.Genres.Add(title);
+
+                }));
+            }
+        }
+
+        private RelayCommand genreUncheck;
+        public RelayCommand GenreUncheck
+        {
+            get
+            {
+                return genreUncheck ?? (genreUncheck = new RelayCommand(obj =>
+                {
+                    for (int i = 0; i < App.FilterMenuPageVM.allGenreValues.Length; i++)
+                    {
+                        TitleGenres genre = App.FilterMenuPageVM.allGenreValues[i];
+                        if (genre.ToString() == obj.ToString())
+                            App.FilterMenuPageVM.Genres.RemoveAt(GetItemIndex(genre));
+                    }
+
+
+                }));
+            }
+        }
+        #endregion
 
         #endregion
 
@@ -111,49 +155,10 @@ namespace Cinema.Scripts.ViewModel
 
         #endregion
 
-        #region BoxGenres
-
-        public TitleGenres[] allGenreValues { get; set; }
-
-        private void SetBoxesGenres()
-        {
-            allGenreValues = (TitleGenres[])Enum.GetValues(typeof(TitleGenres));
-            int i;
-            for (i = 0; i < 13; i++)
-                BoxGenres1.Add(new BoxGenres() { Genre = allGenreValues[i] });
-            for (int k = i; k < allGenreValues.Length; k++)
-                BoxGenres2.Add(new BoxGenres() { Genre = allGenreValues[k] });
-        }
-
-
-
-        private ObservableCollection<BoxGenres> boxGenres1;
-        public ObservableCollection<BoxGenres> BoxGenres1
-        {
-            get => boxGenres1;
-            set
-            {
-                boxGenres1 = value;
-                OnPropertyChanged("BoxGenres1");
-            }
-        }
-
-        private ObservableCollection<BoxGenres> boxGenres2;
-        public ObservableCollection<BoxGenres> BoxGenres2
-        {
-            get => boxGenres2;
-            set
-            {
-                boxGenres2 = value;
-                OnPropertyChanged("BoxGenres2");
-            }
-        }
-        #endregion
-
         #region Genres
 
-        private ObservableCollection<BoxGenres> genres;
-        public ObservableCollection<BoxGenres> Genres
+        private ObservableCollection<TitleGenres> genres;
+        public ObservableCollection<TitleGenres> Genres
         {
             get => genres;
             set
@@ -163,17 +168,12 @@ namespace Cinema.Scripts.ViewModel
             }
         }
 
-
         #endregion
 
         #region TitleType
-        public enum TitleType
-        {
-            Movie, Series
-        }
 
-        private TitleType type;
-        public TitleType Type
+        private TitleTypes type;
+        public TitleTypes Type
         {
             get => type;
             set

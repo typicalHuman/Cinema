@@ -8,14 +8,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
       Title="FlterMenuPage" Foreground="White" FontFamily="Courier New"
-      FontSize="20" DataContext="{x:Static local:App.FilterMenuPageVM}"
+      FontSize="22" DataContext="{x:Static local:App.FilterMenuPageVM}"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
-    <Grid Background="#1b1c1b" >
+    <Grid Background="#1b1c1b">
         <StackPanel>
+
             <StackPanel Orientation="Horizontal">
                 <!--#region YearInterval -->
                 <StackPanel>
-                    <TextBlock Text="Year Interval:" Margin="5 5"/>
+                    <TextBlock Text="Year Interval:" Margin="5 5"
+                               FontSize="24" FontWeight="UltraBold"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBox materialDesign:HintAssist.Hint="From"
                          materialDesign:TextFieldAssist.UnderlineBrush="White"
@@ -35,7 +37,8 @@
 
                 <!--#region TitleType -->
                 <StackPanel Margin="10 0">
-                    <TextBlock Text="Title Type:" Margin="0 5"/>
+                    <TextBlock Text="Title Type:" Margin="0 5"
+                               FontSize="24" FontWeight="UltraBold"/>
                     <StackPanel>
                         <CheckBox Margin="0 5" 
                               Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
@@ -67,49 +70,353 @@
                 </StackPanel>
                 <!--#endregion-->
             </StackPanel>
-            <TextBlock Text="Genres:" Margin="0 20 0 0"/>
+            <TextBlock Text="Genres:" Margin="5 20 0 0" FontSize="24" FontWeight="UltraBold"/>
             <StackPanel Orientation="Horizontal" >
-                <ListBox ItemsSource="{Binding BoxGenres1}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
-                                      Content="{Binding Path=Genre}" Foreground="White">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Checked">
-                                        <i:InvokeCommandAction Command="{Binding GenreCheck}"
-                                                               CommandParameter="{Binding Path=Genre}"/>
-                                    </i:EventTrigger>
-                                    <i:EventTrigger EventName="Unchecked">
-                                        <i:InvokeCommandAction Command="{Binding GenreUncheck}"
-                                                               CommandParameter="{Binding Path=Genre}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </CheckBox>
-
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                    <ListBox ItemsSource="{Binding BoxGenres2}" Margin="100 0">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
-                                      Content="{Binding Path=Genre}" Foreground="White">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Checked">
-                                        <i:InvokeCommandAction Command="{Binding GenreCheck}"
-                                                               CommandParameter="{Binding Path=Genre}"/>
-                                    </i:EventTrigger>
-                                    <i:EventTrigger EventName="Unchecked">
-                                        <i:InvokeCommandAction Command="{Binding GenreUncheck}"
-                                                               CommandParameter="{Binding Path=Genre}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </CheckBox>
-
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <StackPanel Margin="5 0">
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Action
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Adventure
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Animation
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Biography
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Comedy
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Crime
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Documentary
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Drama
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Family
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Fantasy
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        FilmNoir
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        GameShow
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        History
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
                 </StackPanel>
+                <StackPanel Margin="100 0">
+                    
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Horror
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Music
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Musical
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Mystery
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        News
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        RealityTV
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Romance
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        SciFi
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Sport
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        TalkShow
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Thriller
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        War
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                        Western
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type CheckBox}}, Path=Content}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                </StackPanel>
+
+            </StackPanel>
 
 
         </StackPanel>

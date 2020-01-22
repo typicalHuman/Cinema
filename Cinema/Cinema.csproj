@@ -81,7 +81,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Scripts\Model\BoxGenres.cs" />
+    <Compile Include="Scripts\Model\Link.cs" />
+    <Compile Include="Scripts\Model\Parsing.cs" />
+    <Compile Include="Scripts\Model\TitleInfo.cs" />
     <Compile Include="Scripts\ViewModel\FilterMenuPageVM.cs" />
     <Compile Include="Scripts\ViewModel\SearchPageVM.cs" />
     <Compile Include="Scripts\ViewModel\SettingsVM.cs" />

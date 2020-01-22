@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cinema.Scripts.Model
+{
+    class Link
+    {
+
+        private const string ApiKey = "18e2ef3";
+        public string GetLink(string name)
+        {
+            string link = "http://www.omdbapi.com/?t=";
+            name = name.Replace(" ", "+");
+            link += name;
+            link += $"&r=xml&apikey={ApiKey}";
+            return link;
+        }
+    }
+}
