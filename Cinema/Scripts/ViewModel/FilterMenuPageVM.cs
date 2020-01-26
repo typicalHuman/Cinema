@@ -14,13 +14,9 @@ namespace Cinema.Scripts.ViewModel
     public class FilterMenuPageVM : INotifyPropertyChanged
     {
         #region Constructor
-
         public FilterMenuPageVM()
         {
-            Genres = new ObservableCollection<TitleGenres>();
-            new Parsing().GetFilm("pulp fiction");
         }
-
         #endregion
 
         #region Commands
@@ -116,8 +112,6 @@ namespace Cinema.Scripts.ViewModel
                         if (genre.ToString() == obj.ToString())
                             App.FilterMenuPageVM.Genres.RemoveAt(GetItemIndex(genre));
                     }
-
-
                 }));
             }
         }
@@ -126,6 +120,19 @@ namespace Cinema.Scripts.ViewModel
         #endregion
 
         #region Properties 
+
+        #region TitleGenresBoxes
+        private List<TitleGenres> titleGenres = Enum.GetValues(typeof(TitleGenres)).OfType<TitleGenres>().ToList();
+        public List<TitleGenres> TitleGenres
+        {
+            get => titleGenres;
+            set
+            {
+                titleGenres = value;
+                OnPropertyChanged("titleGenres");
+            }
+        }
+        #endregion
 
         #region IsSeries
         private bool isSeries;
@@ -157,7 +164,7 @@ namespace Cinema.Scripts.ViewModel
 
         #region Genres
 
-        private ObservableCollection<TitleGenres> genres;
+        private ObservableCollection<TitleGenres> genres = new ObservableCollection<TitleGenres>();
         public ObservableCollection<TitleGenres> Genres
         {
             get => genres;
