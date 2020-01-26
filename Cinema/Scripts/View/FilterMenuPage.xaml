@@ -72,7 +72,7 @@
             </StackPanel>
             <TextBlock Text="Genres:" Margin="5 20 0 0" FontSize="24" FontWeight="UltraBold"/>
             <StackPanel Orientation="Horizontal" >
-                <StackPanel Margin="5 0">
+                <!--<StackPanel Margin="5 0">
                     <CheckBox Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
                         Action
                         <i:Interaction.Triggers>
@@ -414,9 +414,37 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </CheckBox>
-                </StackPanel>
+                </StackPanel>-->
 
             </StackPanel>
+
+            <ItemsControl ItemsSource="{Binding TitleGenres}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5 5 0 0">
+                            <CheckBox DataContext="{x:Static local:App.FilterMenuPageVM}"
+                                      Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding GenreCheck}"
+                                                   CommandParameter="{Binding ElementName=Genre, Path=Text}"/>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="Unchecked">
+                                        <i:InvokeCommandAction Command="{Binding GenreUncheck}"
+                                                   CommandParameter="{Binding ElementName=Genre, Path=Text}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                            <TextBlock Foreground="White" Text="{Binding}" Name="Genre"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
 
         </StackPanel>
