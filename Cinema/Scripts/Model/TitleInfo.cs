@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,6 +11,15 @@ namespace Cinema.Scripts.Model
 {
     public class TitleInfo : INotifyPropertyChanged
     {
+        #region Constructor
+
+        public TitleInfo()
+        {
+            Genres = new ObservableCollection<TitleGenres>();
+        }
+
+        #endregion
+
         #region Properties
 
         #region Title
@@ -26,8 +36,8 @@ namespace Cinema.Scripts.Model
         #endregion
 
         #region Year
-        private int year;
-        public int Year
+        private string year;
+        public string Year
         {
             get => year;
             set
@@ -68,14 +78,14 @@ namespace Cinema.Scripts.Model
             War, Western
         }
 
-        private TitleGenres genre;
-        public TitleGenres Genre
+        private ObservableCollection<TitleGenres> genres;
+        public ObservableCollection<TitleGenres> Genres
         {
-            get => genre;
+            get => genres;
             set
             {
-                genre = value;
-                OnPropertyChanged("Genre");
+                genres = value;
+                OnPropertyChanged("Genres");
             }
         }
 
@@ -149,8 +159,8 @@ namespace Cinema.Scripts.Model
         #endregion
 
         #region Metascore
-        private byte metascore;
-        public byte Metascore
+        private string metascore;
+        public string Metascore
         {
             get => metascore;
             set
@@ -163,8 +173,8 @@ namespace Cinema.Scripts.Model
         #endregion
 
         #region IMDbRating
-        private float imdbRating;
-        public float ImdbRating
+        private string imdbRating;
+        public string ImdbRating
         {
             get => imdbRating;
             set
