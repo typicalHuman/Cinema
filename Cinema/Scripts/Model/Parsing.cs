@@ -17,9 +17,7 @@ namespace Cinema.Scripts.Model
         private ObservableCollection<TitleInfo> ResultTitles  { get; set; } = new ObservableCollection<TitleInfo>();
         public ObservableCollection<TitleInfo> GetFilms(string name)
         {
-            string link = new Link().GetLink(name);
             new GlobalSearch().GetIDs(name);
-            xmlString = GetXMLString(link);
             SetResultTitle();
             return ResultTitles;
         }
@@ -131,5 +129,5 @@ namespace Cinema.Scripts.Model
             return web.DownloadString(url);
         }
         #endregion
-    }//1640
+    }
 }

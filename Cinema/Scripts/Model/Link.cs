@@ -18,5 +18,12 @@ namespace Cinema.Scripts.Model
             link += $"&r=xml&apikey={ApiKey}";
             return link;
         }
+
+        public string GetGlobalLink(string name)
+        {
+            name = name.Replace(" ", "+");
+            string link = $"https://www.imdb.com/search/title/?title={name}";
+            return link;
+        }
     }
 }

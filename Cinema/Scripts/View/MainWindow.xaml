@@ -113,7 +113,7 @@
                  BorderBrush="#F2E5D7" materialDesign:HintAssist.Hint="Search IMDb"
                  materialDesign:TextFieldAssist.UnderlineBrush="White"
                  CaretBrush="White" IsEnabled="{Binding IsMenuClosed}"
-                 MaxLength="50">
+                 MaxLength="50" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.InputBindings>
                 <KeyBinding Key="Enter" Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" 
                             CommandParameter="Scripts/View/SearchPage.xaml"

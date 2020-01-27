@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using System.Diagnostics;
+using Cinema.Scripts.Model;
 
 namespace Cinema.Scripts.ViewModel
 {
@@ -130,7 +131,7 @@ namespace Cinema.Scripts.ViewModel
             {
                 SelectedIndex = 0;
                 Navigate(obj.ToString());
-                MessageBox.Show("FUCK!!!");
+                new Parsing().GetFilms(SearchText);
             }));
         }
 
@@ -245,6 +246,21 @@ namespace Cinema.Scripts.ViewModel
                 OnPropertyChanged("WindowBorderThickness");
             }
         }
+        #endregion
+
+        #region SearchText
+
+        private string searchText;
+        public string SearchText
+        {
+            get => searchText;
+            set
+            {
+                searchText = value;
+                OnPropertyChanged("SearchText");
+            }
+        }
+
         #endregion
 
         #region OnPropertyChanged

@@ -19,17 +19,6 @@ namespace Cinema.Scripts.ViewModel
 
         #region Commands
 
-        #region SearchCommand
-        private RelayCommand searchCommand;
-        public RelayCommand SearchCommand
-        {
-            get => searchCommand ?? (searchCommand = new RelayCommand(obj =>
-            {
-                MessageBox.Show("FUCK!!!");
-            }));
-        }
-        #endregion
-
         #endregion
 
 

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Rusya\Desktop\Cinema-master\Cinema\obj\Debug\
+E:\Projects\Cinema\Cinema\obj\Debug\
 Cinema
 none
 false
 DEBUG;TRACE
-C:\Users\Rusya\Desktop\Cinema-master\Cinema\App.xaml
+E:\Projects\Cinema\Cinema\App.xaml
 81465507020
 
-211038420535
-125-424217923
+22-420150979
+125148937578
 Scripts\Styles\CloseButtonStyle.xaml;Scripts\Styles\MaximizeButtonStyle.xaml;Scripts\Styles\TextBoxStyle.xaml;Scripts\View\FilterMenuPage.xaml;Scripts\View\MainWindow.xaml;Scripts\View\SearchPage.xaml;Scripts\View\SettingsPage.xaml;Scripts\View\WatchedListPage.xaml;
 
-False
+True
 

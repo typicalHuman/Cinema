@@ -22,18 +22,22 @@ namespace Cinema.Scripts.Model
         private void GlobalParse(string name)
         {
             name.Replace(" ", "+");
-            xmlString = new Parsing().GetXMLString($"https://www.imdb.com/find?q={name}&ref_=nv_sr_sm");
-            EditXMLString();
-            
+            xmlString = new Parsing().GetXMLString(new Link().GetGlobalLink(name));
+            GetLinks();    
         }
 
-        private void EditXMLString()
+        private string[] GetLinks()
         {
-            
-            xmlString = Regex.Match(xmlString, @"<div class=""findSection"">
-<h3 class=""findSectionHeader""><a name =""tt""></a>Titles</h3>
-<table class=""findList"">
-<.*").Value;
+            Regex reg = new Regex("<a href=\"/title/tt.*?/?ref_=adv_li_i\"");
+            MatchCollection matches = reg.Matches(xmlString);
+            List<string> list = new List<string>();
+            for(int i = 0; i < matches.Count; i++)
+            {
+                list.Add(matches[i].Groups[0].Value);
+                list[i] = list[i].Replace("<a href=\"/title/tt", "");
+                list[i] = list[i].Replace("/?ref_=adv_li_i\"", "");
+            }
+            return list.ToArray();
         }
     }
 }
