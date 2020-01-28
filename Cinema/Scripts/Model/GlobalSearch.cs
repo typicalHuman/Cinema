@@ -16,14 +16,17 @@ namespace Cinema.Scripts.Model
         public string[] GetIDs(string name)
         {
             GlobalParse(name);
-            return default(string[]);
+            return GetLinks();
         }
 
         private void GlobalParse(string name)
         {
-            name.Replace(" ", "+");
-            xmlString = new Parsing().GetXMLString(new Link().GetGlobalLink(name));
-            GetLinks();    
+            if (name != null)
+            {
+                name.Replace(" ", "+");
+                xmlString = new Parsing().GetXMLString(new Link().GetGlobalLink(name));
+                GetLinks();
+            }
         }
 
         private string[] GetLinks()
@@ -34,7 +37,7 @@ namespace Cinema.Scripts.Model
             for(int i = 0; i < matches.Count; i++)
             {
                 list.Add(matches[i].Groups[0].Value);
-                list[i] = list[i].Replace("<a href=\"/title/tt", "");
+                list[i] = list[i].Replace("<a href=\"/title/", "");
                 list[i] = list[i].Replace("/?ref_=adv_li_i\"", "");
             }
             return list.ToArray();

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Cinema.Scripts.Model;
 
 namespace Cinema.Scripts.ViewModel
 {
@@ -15,6 +17,7 @@ namespace Cinema.Scripts.ViewModel
         public SearchPageVM()
         {
             IsMenuClosed = App.MainVM.IsMenuClosed;
+            ResultTitles = new ObservableCollection<TitleInfo>();
         }
 
         #region Commands
@@ -23,6 +26,27 @@ namespace Cinema.Scripts.ViewModel
 
 
         #region Properties
+
+        #region ResultTitles
+        public ObservableCollection<TitleInfo> ResultTitles { get; set; }
+
+        #endregion
+
+
+        #region IsSearching
+
+        private bool isSearching;
+        public bool IsSearching
+        {
+            get => isSearching;
+            set
+            {
+                isSearching = value;
+                OnPropertyChanged("IsSearching");
+            }
+        }
+
+        #endregion
 
         #region IsMenuClosed
         private bool isMenuClosed;

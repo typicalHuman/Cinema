@@ -6,13 +6,57 @@
       xmlns:local="clr-namespace:Cinema"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="400"
+      mc:Ignorable="d" FontFamily="Courier New" FontSize="20"
+      d:DesignHeight="450" d:DesignWidth="400" Foreground="White"
       Title="SearchPage" DataContext="{x:Static local:App.SearchPageVM}">
     <Grid Background="#1b1c1b">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="51"/>
-        </Grid.ColumnDefinitions>
+
+        <ItemsControl ItemsSource="{Binding ResultTitles}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source=""/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <materialDesign:PackIcon Kind="Loading" Width="50" Height="50"
+                                 HorizontalAlignment="Center" Foreground="LightGray">
+                <materialDesign:PackIcon.RenderTransform>
+                    <RotateTransform x:Name="rotate"
+                         CenterX="25"
+                         CenterY="25"/>
+                </materialDesign:PackIcon.RenderTransform>
+                <materialDesign:PackIcon.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="rotate"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </materialDesign:PackIcon.Triggers>
+            </materialDesign:PackIcon>
+            <TextBlock Text="Searching" Foreground="LightGray"/>
+        </StackPanel>
+        
+
     </Grid>
 </Page>

@@ -9,6 +9,7 @@ using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using System.Diagnostics;
 using Cinema.Scripts.Model;
+using System.Threading;
 
 namespace Cinema.Scripts.ViewModel
 {
@@ -129,10 +130,20 @@ namespace Cinema.Scripts.ViewModel
         {
             get => searchCommand ?? (searchCommand = new RelayCommand(obj =>
             {
-                SelectedIndex = 0;
-                Navigate(obj.ToString());
-                new Parsing().GetFilms(SearchText);
+                Search(obj);
             }));
+        }
+
+        private async void Search(object obj)
+        {
+            SelectedIndex = 0;
+            Navigate(obj.ToString());
+            App.SearchPageVM.IsSearching = true;
+            await Task.Run(() =>
+            {
+                new Parsing().GetFilms(SearchText);
+            });
+            App.SearchPageVM.IsSearching = false;
         }
 
         #endregion

@@ -19,6 +19,11 @@ namespace Cinema.Scripts.Model
             return link;
         }
 
+        public string GetLink(string name, string id)
+        {
+            return $"http://www.omdbapi.com/?r=xml&apikey={ApiKey}&i={id}";
+        }
+
         public string GetGlobalLink(string name)
         {
             name = name.Replace(" ", "+");
