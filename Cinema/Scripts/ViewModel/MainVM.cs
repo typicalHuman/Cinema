@@ -139,10 +139,11 @@ namespace Cinema.Scripts.ViewModel
             SelectedIndex = 0;
             Navigate(obj.ToString());
             App.SearchPageVM.IsSearching = true;
-            await Task.Run(() =>
+            Task gettingFilms = Task.Run(() =>
             {
                 new Parsing().GetFilms(SearchText);
             });
+            await Task.WhenAll(gettingFilms);
             App.SearchPageVM.IsSearching = false;
         }
 

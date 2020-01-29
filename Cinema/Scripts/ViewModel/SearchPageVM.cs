@@ -14,11 +14,14 @@ namespace Cinema.Scripts.ViewModel
     public class SearchPageVM: INotifyPropertyChanged
     {
 
+        #region Constructor
         public SearchPageVM()
         {
             IsMenuClosed = App.MainVM.IsMenuClosed;
             ResultTitles = new ObservableCollection<TitleInfo>();
         }
+        #endregion
+
 
         #region Commands
 
@@ -28,10 +31,18 @@ namespace Cinema.Scripts.ViewModel
         #region Properties
 
         #region ResultTitles
-        public ObservableCollection<TitleInfo> ResultTitles { get; set; }
+        private ObservableCollection<TitleInfo> resultTitles;
+        public ObservableCollection<TitleInfo> ResultTitles
+        {
+            get => resultTitles;
+            set
+            {
+                resultTitles = value;
+                OnPropertyChanged("ResultTitles");
+            }
+        }
 
         #endregion
-
 
         #region IsSearching
 

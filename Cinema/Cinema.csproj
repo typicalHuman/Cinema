@@ -92,6 +92,7 @@
     <Compile Include="Scripts\Model\Link.cs" />
     <Compile Include="Scripts\Model\Parsing.cs" />
     <Compile Include="Scripts\Model\TitleInfo.cs" />
+    <Compile Include="Scripts\Model\TitlesEdit.cs" />
     <Compile Include="Scripts\ViewModel\FilterMenuPageVM.cs" />
     <Compile Include="Scripts\ViewModel\SearchPageVM.cs" />
     <Compile Include="Scripts\ViewModel\SettingsVM.cs" />
@@ -179,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Materials\noneTitle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0-ci945\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0-ci945\build\MaterialDesignThemes.targets')" />

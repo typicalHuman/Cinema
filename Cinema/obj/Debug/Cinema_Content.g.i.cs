@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("cinemaicon_9jj_icon.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("materials/nonetitle.png")]
 
 

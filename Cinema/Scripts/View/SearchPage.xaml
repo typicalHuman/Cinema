@@ -9,18 +9,40 @@
       mc:Ignorable="d" FontFamily="Courier New" FontSize="20"
       d:DesignHeight="450" d:DesignWidth="400" Foreground="White"
       Title="SearchPage" DataContext="{x:Static local:App.SearchPageVM}">
-    <Grid Background="#1b1c1b">
+    <Grid Background="#1b1c1b" Name="searchPage">
 
-        <ItemsControl ItemsSource="{Binding ResultTitles}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Image Source=""/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding ResultTitles, UpdateSourceTrigger=PropertyChanged}"
+                          HorizontalContentAlignment="Stretch">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Left" Margin="5" MinHeight="120">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Poster}" Height="98" 
+                                   Width="67" Stretch="UniformToFill"/>
+                                <TextBlock Text="{Binding Title}" Margin="5 0" MaxWidth="{Binding ElementName=searchPage,Path=ActualWidth}"
+                                           VerticalAlignment="Top" TextWrapping="Wrap" Grid.Column="1"/>
+                                <TextBlock Text="{Binding Year}" VerticalAlignment="Top"
+                                           Grid.Column="2" Foreground="LightGray" HorizontalAlignment="Right"/>
+                                <Button Width="50" Height="50" Content="{materialDesign:PackIcon Kind=Add, Size=20}"
+                                        Style="{StaticResource MaximizeButtonStyle}" BorderThickness="1"
+                                        BorderBrush="White" HorizontalAlignment="Left"
+                                        VerticalAlignment="Top" Grid.Column="4"/>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
+
+        <!--#region Loading -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                     IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}">
             <StackPanel.Style>
@@ -56,7 +78,7 @@
             </materialDesign:PackIcon>
             <TextBlock Text="Searching" Foreground="LightGray"/>
         </StackPanel>
+        <!--#endregion-->
         
-
     </Grid>
 </Page>

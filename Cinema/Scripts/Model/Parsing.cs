@@ -40,12 +40,13 @@ namespace Cinema.Scripts.Model
             await Task.WhenAll(tasks);
             for (int i = 0; i < tasks.Count; i++)
                 ResultTitles.Add(tasks[i].Result);
+            new TitlesEdit().Edit(ResultTitles);
+            App.SearchPageVM.ResultTitles = ResultTitles;
         }
 
         TitleInfo GetTitle(string xml)
         {
             TitleInfo titleInfo = new TitleInfo();
-            //some titles program can't get because i need imdbPRO(9((
             SetType(titleInfo, xml);
             SetGenre(titleInfo, xml);
             SetTitle(titleInfo, xml);
