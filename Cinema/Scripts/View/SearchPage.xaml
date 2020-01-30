@@ -4,37 +4,42 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cinema"
+      xmlns:vm ="clr-namespace:Cinema.Scripts.ViewModel"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:conv="clr-namespace:Cinema.Scripts.ViewModel"
       mc:Ignorable="d" FontFamily="Courier New" FontSize="20"
       d:DesignHeight="450" d:DesignWidth="400" Foreground="White"
       Title="SearchPage" DataContext="{x:Static local:App.SearchPageVM}">
     <Grid Background="#1b1c1b" Name="searchPage">
-
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding ResultTitles, UpdateSourceTrigger=PropertyChanged}"
                           HorizontalContentAlignment="Stretch">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel HorizontalAlignment="Left" Margin="5" MinHeight="120">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                        <StackPanel HorizontalAlignment="Left"
+                                    Margin="5 10" MinHeight="120">
+                            <StackPanel Orientation="Horizontal">
                                 <Image Source="{Binding Poster}" Height="98" 
-                                   Width="67" Stretch="UniformToFill"/>
-                                <TextBlock Text="{Binding Title}" Margin="5 0" MaxWidth="{Binding ElementName=searchPage,Path=ActualWidth}"
-                                           VerticalAlignment="Top" TextWrapping="Wrap" Grid.Column="1"/>
-                                <TextBlock Text="{Binding Year}" VerticalAlignment="Top"
-                                           Grid.Column="2" Foreground="LightGray" HorizontalAlignment="Right"/>
-                                <Button Width="50" Height="50" Content="{materialDesign:PackIcon Kind=Add, Size=20}"
-                                        Style="{StaticResource MaximizeButtonStyle}" BorderThickness="1"
-                                        BorderBrush="White" HorizontalAlignment="Left"
-                                        VerticalAlignment="Top" Grid.Column="4"/>
-                            </Grid>
+                                   Width="67" Stretch="UniformToFill" 
+                                       VerticalAlignment="Top"/>
+                                <StackPanel>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding Title}"  TextWrapping="Wrap"
+                                           MaxWidth="400" Margin="5 0"
+                                           VerticalAlignment="Top" DockPanel.Dock="Left"/>
+                                        <TextBlock Text="{Binding Year}" VerticalAlignment="Top"
+                                           Foreground="LightGray" HorizontalAlignment="Left"
+                                           MinWidth="50" Margin="5 0"/>
+                                    </DockPanel>
+                                    <TextBlock Text="{Binding GenresString}" MaxWidth="450"
+                                               TextWrapping="Wrap" Margin="5 0"
+                                               FontSize="17" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding Plot}" MaxWidth="400"
+                                               FontSize="15" Foreground="LightGray"
+                                               TextWrapping="Wrap" Margin="5 0" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

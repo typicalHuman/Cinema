@@ -20,6 +20,8 @@ namespace Cinema.Scripts.Model
                 {
                     SetTitlesNumber(titles, i);
                     SetYear(titles, i);
+                    ChangeEmptyPlot(titles, i);
+                    SetGenresString(titles, i);
                 }
             }
 
@@ -44,6 +46,21 @@ namespace Cinema.Scripts.Model
         private void SetYear(ObservableCollection<TitleInfo> titles, int i)
         { 
             titles[i].Year = $"({titles[i].Year})";
+        }
+
+        private void ChangeEmptyPlot(ObservableCollection<TitleInfo> titles, int i)
+        {
+            if (titles[i].Plot == "N/A")
+                titles[i].Plot = "";
+        }
+
+        private void SetGenresString(ObservableCollection<TitleInfo> titles, int i)
+        {
+            for (int k = 0; k < titles[i].Genres.Count; k++)
+                if (k != titles[i].Genres.Count - 1)
+                    titles[i].GenresString += $"{titles[i].Genres[k].ToString()} | ";
+                else
+                    titles[i].GenresString += titles[i].Genres[k].ToString();
         }
     }
 }

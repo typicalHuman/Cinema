@@ -78,6 +78,17 @@ namespace Cinema.Scripts.Model
             War, Western
         }
 
+        private string genresString;
+        public string GenresString
+        {
+            get => genresString;
+            set
+            {
+                genresString = value;
+                OnPropertyChanged("GenresString");
+            }
+        }
+
         private ObservableCollection<TitleGenres> genres;
         public ObservableCollection<TitleGenres> Genres
         {
