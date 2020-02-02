@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -10,6 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Diagnostics;
 using Cinema.Scripts.Model;
 using System.Threading;
+using System.Collections.ObjectModel;
 
 namespace Cinema.Scripts.ViewModel
 {
@@ -138,6 +136,7 @@ namespace Cinema.Scripts.ViewModel
         {
             SelectedIndex = 0;
             Navigate(obj.ToString());
+            App.SearchPageVM.ResultTitles = new ObservableCollection<TitleInfo>();
             App.SearchPageVM.IsSearching = true;
             Task gettingFilms = Task.Run(() =>
             {

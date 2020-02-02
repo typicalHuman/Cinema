@@ -12,19 +12,66 @@ namespace Cinema.Scripts.Model
 
         public void Edit(ObservableCollection<TitleInfo> titles)
         {
+            UseFilter(titles);
             for(int i = 0; i < titles.Count; i++)
             {
                 int temp = i;
                 ChangeEmptyPoster(titles, ref i);
                 if (temp == i)
                 {
-                    SetTitlesNumber(titles, i);
-                    SetYear(titles, i);
-                    ChangeEmptyPlot(titles, i);
-                    SetGenresString(titles, i);
-                }
+                    SetTitlesNumber(titles[i], i);
+                    SetYear(titles[i]);
+                    ChangeEmptyPlot(titles[i]);
+                    SetGenresString(titles[i]);
+                }  
             }
 
+        }
+
+        private void UseFilter(ObservableCollection<TitleInfo> titles)
+        {
+            if (App.FilterMenuPageVM == null)
+                App.FilterMenuPageVM = new ViewModel.FilterMenuPageVM();
+            for (int i = 0; i < titles.Count; i++)
+            {
+                if (!CheckGenres(titles[i]) || !YearCheck(titles[i]) || !TypeCheck(titles[i]))
+                {
+                    titles.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        private bool TypeCheck(TitleInfo title)
+        {
+            return title.Type == App.FilterMenuPageVM.Type;
+        }
+
+        private bool YearCheck(TitleInfo title)
+        {
+            int startYear, endYear, titleYear = -1;
+            if (App.FilterMenuPageVM.Year2 == "" || App.FilterMenuPageVM.Year2 == null)
+                endYear = 9999;
+            else
+                endYear = int.Parse(App.FilterMenuPageVM.Year2);
+            if (App.FilterMenuPageVM.Year1 == "" || App.FilterMenuPageVM.Year1 == null)
+                startYear = 0;
+            else
+                startYear = int.Parse(App.FilterMenuPageVM.Year1);
+            bool isParse = int.TryParse(title.Year, out titleYear);
+            if (isParse)
+                titleYear = int.Parse(title.Year);
+            return titleYear >= startYear && titleYear <= endYear;
+        }
+
+        private bool CheckGenres(TitleInfo title)
+        {
+            for (int k = 0; k < title.Genres.Count; k++)
+            {
+                if (!App.FilterMenuPageVM.Genres.Contains(title.Genres[k]) && App.FilterMenuPageVM.Genres.Count != 0)
+                    return false;
+            }
+            return true;
         }
 
         private void ChangeEmptyPoster(ObservableCollection<TitleInfo> titles, ref int i)
@@ -38,29 +85,29 @@ namespace Cinema.Scripts.Model
             }
         }
 
-        private void SetTitlesNumber(ObservableCollection<TitleInfo> titles, int i)
+        private void SetTitlesNumber(TitleInfo title, int i)
         {
-            titles[i].Title = $"{i + 1}.{titles[i].Title}";
+            title.Title = $"{i + 1}.{title.Title}";
         }
 
-        private void SetYear(ObservableCollection<TitleInfo> titles, int i)
+        private void SetYear(TitleInfo title)
         { 
-            titles[i].Year = $"({titles[i].Year})";
+            title.Year = $"({title.Year})";
         }
 
-        private void ChangeEmptyPlot(ObservableCollection<TitleInfo> titles, int i)
+        private void ChangeEmptyPlot(TitleInfo title)
         {
-            if (titles[i].Plot == "N/A")
-                titles[i].Plot = "";
+            if (title.Plot == "N/A")
+                title.Plot = "";
         }
 
-        private void SetGenresString(ObservableCollection<TitleInfo> titles, int i)
+        private void SetGenresString(TitleInfo title)
         {
-            for (int k = 0; k < titles[i].Genres.Count; k++)
-                if (k != titles[i].Genres.Count - 1)
-                    titles[i].GenresString += $"{titles[i].Genres[k].ToString()} | ";
+            for (int k = 0; k < title.Genres.Count; k++)
+                if (k != title.Genres.Count - 1)
+                    title.GenresString += $"{title.Genres[k].ToString()} | ";
                 else
-                    titles[i].GenresString += titles[i].Genres[k].ToString();
+                    title.GenresString += title.Genres[k].ToString();
         }
     }
 }

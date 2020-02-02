@@ -16,6 +16,7 @@ namespace Cinema.Scripts.ViewModel
         #region Constructor
         public FilterMenuPageVM()
         {
+            TitleGenres = allGenreValues.ToList();
         }
         #endregion
 
@@ -74,7 +75,7 @@ namespace Cinema.Scripts.ViewModel
 
         #region GenreCheck
 
-        private TitleGenres[] allGenreValues = (TitleGenres[])Enum.GetValues(typeof(TitleGenres));
+        public TitleGenres[] allGenreValues = (TitleGenres[])Enum.GetValues(typeof(TitleGenres));
 
         private int GetItemIndex(TitleGenres genre)
         {
@@ -91,9 +92,9 @@ namespace Cinema.Scripts.ViewModel
             {
                 return genreCheck ?? (genreCheck = new RelayCommand(obj =>
                 {
-                    foreach (TitleGenres title in allGenreValues)
-                        if (title.ToString() == obj.ToString())
-                            App.FilterMenuPageVM.Genres.Add(title);
+                    foreach (TitleGenres genre in allGenreValues)
+                        if (genre.ToString() == obj.ToString())
+                             Genres.Add(genre);
 
                 }));
             }
@@ -106,11 +107,10 @@ namespace Cinema.Scripts.ViewModel
             {
                 return genreUncheck ?? (genreUncheck = new RelayCommand(obj =>
                 {
-                    for (int i = 0; i < App.FilterMenuPageVM.allGenreValues.Length; i++)
+                    foreach (TitleGenres genre in allGenreValues)
                     {
-                        TitleGenres genre = App.FilterMenuPageVM.allGenreValues[i];
                         if (genre.ToString() == obj.ToString())
-                            App.FilterMenuPageVM.Genres.RemoveAt(GetItemIndex(genre));
+                            Genres.RemoveAt(GetItemIndex(genre));
                     }
                 }));
             }
@@ -122,7 +122,8 @@ namespace Cinema.Scripts.ViewModel
         #region Properties 
 
         #region TitleGenresBoxes
-        private List<TitleGenres> titleGenres = Enum.GetValues(typeof(TitleGenres)).OfType<TitleGenres>().ToList();
+        //for view
+        private List<TitleGenres> titleGenres;
         public List<TitleGenres> TitleGenres
         {
             get => titleGenres;
@@ -163,17 +164,8 @@ namespace Cinema.Scripts.ViewModel
         #endregion
 
         #region Genres
-
-        private ObservableCollection<TitleGenres> genres = new ObservableCollection<TitleGenres>();
-        public ObservableCollection<TitleGenres> Genres
-        {
-            get => genres;
-            set
-            {
-                genres = value;
-                OnPropertyChanged("Genres");
-            }
-        }
+        //for model
+        public List<TitleGenres> Genres = new List<TitleGenres>();
 
         #endregion
 
@@ -193,11 +185,6 @@ namespace Cinema.Scripts.ViewModel
         #endregion
 
         #region YearInterval
-
-        public string YearInterval
-        {
-            get => year1 + "-" + year2;
-        }
 
         private string year2;
         public string Year2

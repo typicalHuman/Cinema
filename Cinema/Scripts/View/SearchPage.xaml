@@ -14,7 +14,8 @@
     <Grid Background="#1b1c1b" Name="searchPage">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding ResultTitles, UpdateSourceTrigger=PropertyChanged}"
-                          HorizontalContentAlignment="Stretch">
+                          HorizontalContentAlignment="Stretch"
+                          >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel HorizontalAlignment="Left"

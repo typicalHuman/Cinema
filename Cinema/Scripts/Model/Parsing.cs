@@ -31,7 +31,8 @@ namespace Cinema.Scripts.Model
         {
             string[] titleIDs = new GlobalSearch().GetIDs(name);
 
-            List<Task<TitleInfo>> tasks = new List<Task<TitleInfo>>(); string link;
+            List<Task<TitleInfo>> tasks = new List<Task<TitleInfo>>(); 
+            string link;
             for (int i = 0; i < titleIDs.Length; i++)
             {
                 link = new Link().GetLink(name, titleIDs[i]);

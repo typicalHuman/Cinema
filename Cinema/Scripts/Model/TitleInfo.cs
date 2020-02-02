@@ -75,7 +75,7 @@ namespace Cinema.Scripts.Model
             History, Horror, Music, Musical,
             Mystery, News, RealityTV, Romance,
             SciFi, Sport, TalkShow, Thriller,
-            War, Western
+            War, Western, Short
         }
 
         private string genresString;

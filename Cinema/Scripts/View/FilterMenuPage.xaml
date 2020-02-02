@@ -428,7 +428,8 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="5 5 0 0">
                             <CheckBox DataContext="{x:Static local:App.FilterMenuPageVM}"
-                                      Style="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                                      Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                                      >
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Checked">
                                         <i:InvokeCommandAction Command="{Binding GenreCheck}"
