@@ -24,11 +24,31 @@ namespace Cinema.Scripts.ViewModel
 
 
         #region Commands
-
+        #region TitleInfoCommand
+        private RelayCommand navigateTitleCommand;
+        public RelayCommand NavigateTitleCommand
+        {
+            get
+            {
+                return navigateTitleCommand ?? (navigateTitleCommand = new RelayCommand(obj => 
+                {
+                    string parseNumber = obj.ToString().Remove(obj.ToString().IndexOf('.'));
+                    SelectedIndex = int.Parse(parseNumber) - 1;
+                    App.MainVM.Navigate(@"Scripts\View\TitlePage.xaml");
+                    App.TitlePageVM = new TitlePageVM();
+                }));
+            }
+        }
+        #endregion
         #endregion
 
 
         #region Properties
+
+        #region SelectedIndex
+        public int SelectedIndex { get; set; }
+
+        #endregion
 
         #region ResultTitles
         private ObservableCollection<TitleInfo> resultTitles;

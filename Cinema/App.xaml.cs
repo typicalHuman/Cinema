@@ -17,15 +17,14 @@ namespace Cinema
         public static MainVM MainVM { get; set; }
         public static SearchPageVM SearchPageVM { get; set; }
         public static FilterMenuPageVM FilterMenuPageVM { get; set; }
-        public static SettingsVM SettingsVM { get; set; }
         public static WatchedListVM WatchedListVM { get; set; }
+        public static TitlePageVM TitlePageVM { get; set; }
 
         public App()
         {
             MainVM = new MainVM();
             SearchPageVM = new SearchPageVM();
             FilterMenuPageVM = new FilterMenuPageVM();
-            SettingsVM = new SettingsVM();
             WatchedListVM = new WatchedListVM();
         }
     }

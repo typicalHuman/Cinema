@@ -1,0 +1,27 @@
+﻿<Page x:Class="Cinema.Scripts.View.TitlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cinema"
+      mc:Ignorable="d" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      FontFamily="Courier New" FontSize="20"
+      d:DesignHeight="450" d:DesignWidth="400" Foreground="White"
+      Title="TitlePage" DataContext="{x:Static local:App.TitlePageVM}">
+
+    <Grid Background="#1b1c1b">
+        <StackPanel>
+            <TextBlock Text="{Binding TitleInfo.Title}"/>
+        </StackPanel>
+
+        <Button DataContext="{x:Static local:App.MainVM}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
+                                           CommandParameter="Scripts/View/SearchPage.xaml"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </Grid>
+</Page>

@@ -228,7 +228,73 @@
                         </StackPanel>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Selected">
-                                <i:InvokeCommandAction Command="{Binding GotoSite}"/>
+                                <i:InvokeCommandAction Command="{Binding GotoSite}"
+                                                       CommandParameter="https://www.imdb.com/?ref_=nv_home"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Facebook" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     Margin="5 0"/>
+                            <TextBlock Text="Facebook" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding GotoSite}"
+                                                       CommandParameter="https://www.facebook.com/imdb"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Instagram" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     Margin="5 0"/>
+                            <TextBlock Text="Instagram" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding GotoSite}"
+                                                       CommandParameter="https://www.instagram.com/imdb/"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Twitter" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     Margin="5 0"/>
+                            <TextBlock Text="Twitter" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding GotoSite}"
+                                                       CommandParameter="https://twitter.com/imdb"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Twitch" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     Margin="5 0"/>
+                            <TextBlock Text="Twitch" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding GotoSite}"
+                                                       CommandParameter="https://www.twitch.tv/IMDb"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListViewItem>
+                    <ListViewItem Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Youtube" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                     Margin="5 0"/>
+                            <TextBlock Text="Youtube" VerticalAlignment="Center" Margin="10 0"/>
+                        </StackPanel>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding GotoSite}"
+                                                       CommandParameter="https://www.youtube.com/imdb/"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ListViewItem>

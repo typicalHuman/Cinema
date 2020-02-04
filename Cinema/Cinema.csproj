@@ -79,6 +79,18 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Vlc.DotNet.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.3.0.0\lib\net45\Vlc.DotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core.Interops, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.Interops.3.0.0\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Wpf, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Wpf.3.0.0\lib\net45\Vlc.DotNet.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="WebEye.Controls.Wpf.StreamPlayerControl, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebEye.Controls.Wpf.StreamPlayerControl.1.0.6\lib\net40\WebEye.Controls.Wpf.StreamPlayerControl.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -95,13 +107,13 @@
     <Compile Include="Scripts\Model\TitlesEdit.cs" />
     <Compile Include="Scripts\ViewModel\FilterMenuPageVM.cs" />
     <Compile Include="Scripts\ViewModel\SearchPageVM.cs" />
-    <Compile Include="Scripts\ViewModel\SettingsVM.cs" />
+    <Compile Include="Scripts\ViewModel\TitlePageVM.cs" />
     <Compile Include="Scripts\ViewModel\WatchedListVM.cs" />
     <Compile Include="Scripts\View\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\View\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Include="Scripts\View\TitlePage.xaml.cs">
+      <DependentUpon>TitlePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\View\WatchedListPage.xaml.cs">
       <DependentUpon>WatchedListPage.xaml</DependentUpon>
@@ -145,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scripts\View\SettingsPage.xaml">
+    <Page Include="Scripts\View\TitlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

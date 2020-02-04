@@ -26,9 +26,22 @@
                                        VerticalAlignment="Top"/>
                                 <StackPanel>
                                     <DockPanel>
-                                        <TextBlock Text="{Binding Title}"  TextWrapping="Wrap"
-                                           MaxWidth="400" Margin="5 0"
+                                        <TextBlock Visibility="Collapsed" Text="{Binding Title}"
+                                                   Name="TitleBox"/>
+                                        <TextBlock>
+                                            <Hyperlink NavigateUri="TitlePage.xaml" DataContext="{x:Static local:App.SearchPageVM}"
+                                                       Foreground="#136cb2">
+                                                <TextBlock Text="{Binding ElementName=TitleBox, Path=Text}" TextWrapping="Wrap"
+                                                           MaxWidth="400" Margin="5 0" 
                                            VerticalAlignment="Top" DockPanel.Dock="Left"/>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="RequestNavigate">
+                                                        <i:InvokeCommandAction Command="{Binding NavigateTitleCommand}"
+                                                                               CommandParameter="{Binding ElementName=TitleBox, Path=Text}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Hyperlink>
+                                        </TextBlock>
                                         <TextBlock Text="{Binding Year}" VerticalAlignment="Top"
                                            Foreground="LightGray" HorizontalAlignment="Left"
                                            MinWidth="50" Margin="5 0"/>

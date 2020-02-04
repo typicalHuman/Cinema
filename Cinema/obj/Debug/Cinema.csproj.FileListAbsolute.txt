@@ -92,7 +92,6 @@ E:\Projects\Cinema\Cinema\obj\Debug\Scripts\Styles\TextBoxStyle.baml
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\FilterMenuPage.g.cs
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\MainWindow.g.cs
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\SearchPage.g.cs
-E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\SettingsPage.g.cs
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\WatchedListPage.g.cs
 E:\Projects\Cinema\Cinema\obj\Debug\App.g.cs
 E:\Projects\Cinema\Cinema\obj\Debug\Cinema_MarkupCompile.cache
@@ -121,7 +120,6 @@ E:\Projects\Cinema\Cinema\obj\Debug\App.baml
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\FilterMenuPage.baml
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\MainWindow.baml
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\SearchPage.baml
-E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\SettingsPage.baml
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\WatchedListPage.baml
 E:\Projects\Cinema\Cinema\obj\Debug\Cinema.g.resources
 E:\Projects\Cinema\Cinema\obj\Debug\Cinema.Properties.Resources.resources
@@ -133,3 +131,10 @@ E:\Projects\Cinema\Cinema\obj\Debug\Cinema.csprojAssemblyReference.cache
 E:\Projects\Cinema\Cinema\bin\Debug\HtmlAgilityPack.dll
 E:\Projects\Cinema\Cinema\bin\Debug\HtmlAgilityPack.pdb
 E:\Projects\Cinema\Cinema\bin\Debug\HtmlAgilityPack.xml
+E:\Projects\Cinema\Cinema\bin\Debug\WebEye.Controls.Wpf.StreamPlayerControl.dll
+E:\Projects\Cinema\Cinema\bin\Debug\WebEye.Controls.Wpf.StreamPlayerControl.pdb
+E:\Projects\Cinema\Cinema\bin\Debug\Vlc.DotNet.Core.dll
+E:\Projects\Cinema\Cinema\bin\Debug\Vlc.DotNet.Core.Interops.dll
+E:\Projects\Cinema\Cinema\bin\Debug\Vlc.DotNet.Wpf.dll
+E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\TitlePage.g.cs
+E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\TitlePage.baml

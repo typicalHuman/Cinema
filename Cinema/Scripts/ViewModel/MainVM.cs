@@ -157,7 +157,7 @@ namespace Cinema.Scripts.ViewModel
             {
                 return gotoSite ?? (gotoSite = new RelayCommand(obj => 
                 {
-                    Process.Start("https://www.imdb.com/?ref_=nv_home");
+                    Process.Start(obj.ToString());
                 }));
             }
         }
