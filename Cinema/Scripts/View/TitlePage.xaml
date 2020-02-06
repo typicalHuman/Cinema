@@ -6,22 +6,80 @@
       xmlns:local="clr-namespace:Cinema"
       mc:Ignorable="d" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       FontFamily="Courier New" FontSize="20"
       d:DesignHeight="450" d:DesignWidth="400" Foreground="White"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
       Title="TitlePage" DataContext="{x:Static local:App.TitlePageVM}">
 
     <Grid Background="#1b1c1b">
-        <StackPanel>
-            <TextBlock Text="{Binding TitleInfo.Title}"/>
-        </StackPanel>
-
-        <Button DataContext="{x:Static local:App.MainVM}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click">
-                    <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
+        <StackPanel HorizontalAlignment="Left"
+                                    Margin="5 10" MinHeight="120">
+            <!--#region Title -->
+            <StackPanel Orientation="Horizontal">
+                <Button DataContext="{x:Static local:App.MainVM}" Height="50" Width="50"
+                        VerticalAlignment="Top" Style="{StaticResource MaximizeButtonStyle}"
+                    Content="{materialDesign:PackIcon Kind=KeyboardReturn,Size=20}"
+                        Margin="5" ToolTip="Back to list">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
                                            CommandParameter="Scripts/View/SearchPage.xaml"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <TextBlock  Text="{Binding TitleInfo.Title}" TextWrapping="Wrap" MaxWidth="400" Margin="5 0" 
+                            FontSize="30" VerticalAlignment="Center"
+                            FontWeight="Bold"/>
+                <TextBlock Text="{Binding TitleInfo.Year}" VerticalAlignment="Center"
+                                           Foreground="LightGray" HorizontalAlignment="Left"
+                                           MinWidth="50" Margin="5 0"/>
+            </StackPanel>
+            <!--#endregion-->
+
+            <!--#region Info -->
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding TitleInfo.Poster}" Height="196" 
+                                   Width="134" Stretch="UniformToFill" 
+                                       VerticalAlignment="Top" Margin="5 0"/>
+                <StackPanel>
+                    <!--#region Raiting -->
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Star" Foreground="Yellow"
+                                                 Height="40" Width="40" FontSize="20"/>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding TitleInfo.ImdbRating}" 
+                                   Foreground="LightGray" VerticalAlignment="Center"
+                                   Margin="5 0" FontWeight="Bold"/>
+                                <TextBlock Text="/10" Foreground="LightGray" VerticalAlignment="Center"
+                                   FontSize="15"/>
+                            </StackPanel>
+                            <TextBlock  Text="{Binding TitleInfo.ImdbVotes}"
+                               FontSize="15" Foreground="LightGray" Margin="5 0"/>
+                        </StackPanel>
+                        <Button Width="40" Height="40" IsEnabled="False"
+                                Content="{Binding TitleInfo.Metascore}" Style="{StaticResource MaximizeButtonStyle}" Foreground="{Binding ForeGround}"
+                                Background="{Binding BackGround}" 
+                                Margin="5 0"/>
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <TextBlock Text="{Binding TitleInfo.GenresString}" MaxWidth="450"
+                                               TextWrapping="Wrap" Margin="5 5"
+                                               FontSize="17" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding TitleInfo.Plot}" MaxWidth="400"
+                                               FontSize="15" Foreground="LightGray"
+                                               TextWrapping="Wrap" Margin="5 0" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding TitleInfo.Director}" MaxWidth="400" TextWrapping="Wrap"
+                               Margin="5 5" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </StackPanel>
+            <!--#endregion-->
+            <TextBlock Text="{Binding StringFormat={}Actors: {0}, Path=TitleInfo.Actors}" MaxWidth="600" HorizontalAlignment="Left"
+                               TextWrapping="Wrap" Margin="5 5" FontStyle="Oblique"/>
+            <TextBlock Text="{Binding StringFormat={}Writers: {0}, Path=TitleInfo.Writer}"
+                       MaxWidth="600" TextWrapping="Wrap" Margin="5 5" />
+        </StackPanel>
     </Grid>
 </Page>

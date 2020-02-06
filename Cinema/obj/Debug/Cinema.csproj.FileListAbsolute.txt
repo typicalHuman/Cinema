@@ -138,3 +138,4 @@ E:\Projects\Cinema\Cinema\bin\Debug\Vlc.DotNet.Core.Interops.dll
 E:\Projects\Cinema\Cinema\bin\Debug\Vlc.DotNet.Wpf.dll
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\TitlePage.g.cs
 E:\Projects\Cinema\Cinema\obj\Debug\Scripts\View\TitlePage.baml
+E:\Projects\Cinema\Cinema\obj\Debug\GeneratedInternalTypeHelper.g.cs

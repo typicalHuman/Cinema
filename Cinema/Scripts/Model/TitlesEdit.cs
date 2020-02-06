@@ -28,6 +28,13 @@ namespace Cinema.Scripts.Model
 
         }
 
+        public void RemoveTitleNumber(TitleInfo title)
+        {
+            string _title = title.Title;
+            string toRemove = _title.Remove(_title.IndexOf('.') + 1);
+            title.Title = title.Title.Replace(toRemove, "");
+        }
+
         private void UseFilter(ObservableCollection<TitleInfo> titles)
         {
             if (App.FilterMenuPageVM == null)

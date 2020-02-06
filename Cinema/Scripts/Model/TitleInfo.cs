@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Cinema.Scripts.Model
 {
-    public class TitleInfo : INotifyPropertyChanged
+    public class TitleInfo : ICloneable, INotifyPropertyChanged
     {
         #region Constructor
 
@@ -215,8 +215,16 @@ namespace Cinema.Scripts.Model
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
+
         #endregion
 
+        #endregion
+
+        #region Clone
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
         #endregion
     }
 }
