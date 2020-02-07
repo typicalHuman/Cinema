@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Cinema.Scripts.View.TitlesList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cinema"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d"  Name="TitleList"
+             d:DesignHeight="450" d:DesignWidth="800"
+             Foreground="White" FontSize="20" FontFamily="Courier New"
+             >
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding ItemsSource, ElementName=TitleList, UpdateSourceTrigger=PropertyChanged}"
+                          HorizontalContentAlignment="Stretch">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Left"
+                                    Margin="5 10" MinHeight="120">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Poster}" Height="98" 
+                                   Width="67" Stretch="UniformToFill" 
+                                       VerticalAlignment="Top"/>
+                                <StackPanel>
+                                    <DockPanel>
+                                        <TextBlock Visibility="Collapsed" Text="{Binding Title}"
+                                                   Name="TitleBox"/>
+                                        <TextBlock>
+                                            <Hyperlink NavigateUri="TitlePage.xaml" DataContext="{x:Static local:App.SearchPageVM}"
+                                                       Foreground="#136cb2">
+                                                <TextBlock Text="{Binding ElementName=TitleBox, Path=Text}" TextWrapping="Wrap"
+                                                           MaxWidth="400" Margin="5 0" 
+                                           VerticalAlignment="Top" DockPanel.Dock="Left"/>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="RequestNavigate">
+                                                        <i:InvokeCommandAction Command="{Binding NavigateTitleCommand}"
+                                                                               CommandParameter="{Binding ElementName=TitleBox, Path=Text}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Year}" VerticalAlignment="Top"
+                                           Foreground="LightGray" HorizontalAlignment="Left"
+                                           MinWidth="50" Margin="5 0"/>
+                                    </DockPanel>
+                                    <TextBlock Text="{Binding GenresString}" MaxWidth="450"
+                                               TextWrapping="Wrap" Margin="5 0"
+                                               FontSize="17" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding Plot}" MaxWidth="400"
+                                               FontSize="15" Foreground="LightGray"
+                                               TextWrapping="Wrap" Margin="5 0" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

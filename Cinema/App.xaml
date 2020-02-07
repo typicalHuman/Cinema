@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Scripts/Styles/CloseButtonStyle.xaml"/>
                 <ResourceDictionary Source="Scripts/Styles/MaximizeButtonStyle.xaml"/>
                 <ResourceDictionary Source="Scripts/Styles/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="Scripts/Styles/AddButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

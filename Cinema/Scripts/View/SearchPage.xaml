@@ -61,40 +61,74 @@
 
         <!--#region Loading -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
-                    IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}">
+                     IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="True">
+                        <DataTrigger Binding="{Binding Text, ElementName=statusText}" Value="Nothing found">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="False">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Text, ElementName=statusText}" Value="Searching"/>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Text, ElementName=statusText}" Value="Searching"/>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
-            <materialDesign:PackIcon Kind="Loading" Width="50" Height="50"
-                                 HorizontalAlignment="Center" Foreground="LightGray">
-                <materialDesign:PackIcon.RenderTransform>
-                    <RotateTransform x:Name="rotate"
+            <StackPanel IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}">
+                <materialDesign:PackIcon Kind="Loading" Width="50" Height="50"
+                                 HorizontalAlignment="Center" Foreground="LightGray"
+                                     IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}">
+                    <materialDesign:PackIcon.RenderTransform>
+                        <RotateTransform x:Name="rotate"
                          CenterX="25"
                          CenterY="25"/>
-                </materialDesign:PackIcon.RenderTransform>
-                <materialDesign:PackIcon.Triggers>
-                    <EventTrigger RoutedEvent="Loaded">
-                        <BeginStoryboard>
-                            <Storyboard RepeatBehavior="Forever">
-                                <DoubleAnimation Storyboard.TargetName="rotate"
+                    </materialDesign:PackIcon.RenderTransform>
+                    <materialDesign:PackIcon.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard RepeatBehavior="Forever">
+                                    <DoubleAnimation Storyboard.TargetName="rotate"
                                      Storyboard.TargetProperty="Angle"
                                      By="360" Duration="0:0:1"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </materialDesign:PackIcon.Triggers>
-            </materialDesign:PackIcon>
-            <TextBlock Text="Searching" Foreground="LightGray"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </materialDesign:PackIcon.Triggers>
+                </materialDesign:PackIcon>
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+
+
+            <TextBlock Text="{Binding StatusText, UpdateSourceTrigger=PropertyChanged}" Foreground="LightGray"
+                       Name="statusText"/>
         </StackPanel>
+        
         <!--#endregion-->
         
     </Grid>

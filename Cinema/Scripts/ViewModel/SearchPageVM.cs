@@ -18,7 +18,7 @@ namespace Cinema.Scripts.ViewModel
         public SearchPageVM()
         {
             IsMenuClosed = App.MainVM.IsMenuClosed;
-            ResultTitles = new ObservableCollection<TitleInfo>();
+            ResultTitles = new List<TitleInfo>();
         }
         #endregion
 
@@ -32,7 +32,8 @@ namespace Cinema.Scripts.ViewModel
             {
                 return navigateTitleCommand ?? (navigateTitleCommand = new RelayCommand(obj => 
                 {
-                    string parseNumber = obj.ToString().Remove(obj.ToString().IndexOf('.'));
+                    int dotIndex = obj.ToString().IndexOf('.');
+                    string parseNumber = obj.ToString().Remove(dotIndex);
                     SelectedIndex = int.Parse(parseNumber) - 1;
                     App.MainVM.Navigate(@"Scripts\View\TitlePage.xaml");
                     App.TitlePageVM = new TitlePageVM();
@@ -51,8 +52,8 @@ namespace Cinema.Scripts.ViewModel
         #endregion
 
         #region ResultTitles
-        private ObservableCollection<TitleInfo> resultTitles;
-        public ObservableCollection<TitleInfo> ResultTitles
+        private List<TitleInfo> resultTitles;
+        public List<TitleInfo> ResultTitles
         {
             get => resultTitles;
             set
@@ -92,6 +93,22 @@ namespace Cinema.Scripts.ViewModel
         }
         #endregion
 
+        #region 
+
+
+        private string statusText = "Searching";
+        public string StatusText
+        {
+            get => statusText;
+            set
+            {
+                statusText = value;
+                OnPropertyChanged("StatusText");
+            }
+        }
+
+        #endregion
+
         #region OnPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
@@ -103,3 +120,6 @@ namespace Cinema.Scripts.ViewModel
         #endregion
     }
 }
+
+
+//стиль для кнопки добавления(удалить / добавить), xml

@@ -10,7 +10,7 @@ namespace Cinema.Scripts.Model
     class TitlesEdit
     {
 
-        public void Edit(ObservableCollection<TitleInfo> titles)
+        public void Edit(List<TitleInfo> titles)
         {
             UseFilter(titles);
             for(int i = 0; i < titles.Count; i++)
@@ -35,7 +35,7 @@ namespace Cinema.Scripts.Model
             title.Title = title.Title.Replace(toRemove, "");
         }
 
-        private void UseFilter(ObservableCollection<TitleInfo> titles)
+        private void UseFilter(List<TitleInfo> titles)
         {
             if (App.FilterMenuPageVM == null)
                 App.FilterMenuPageVM = new ViewModel.FilterMenuPageVM();
@@ -81,7 +81,7 @@ namespace Cinema.Scripts.Model
             return true;
         }
 
-        private void ChangeEmptyPoster(ObservableCollection<TitleInfo> titles, ref int i)
+        private void ChangeEmptyPoster(List<TitleInfo> titles, ref int i)
         {
             if (titles[i].Poster == "N/A")
                 titles[i].Poster = "pack://application:,,,/Materials/noneTitle.png";
@@ -92,7 +92,7 @@ namespace Cinema.Scripts.Model
             }
         }
 
-        private void SetTitlesNumber(TitleInfo title, int i)
+        public void SetTitlesNumber(TitleInfo title, int i)
         {
             title.Title = $"{i + 1}.{title.Title}";
         }

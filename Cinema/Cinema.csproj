@@ -105,6 +105,7 @@
     <Compile Include="Scripts\Model\Parsing.cs" />
     <Compile Include="Scripts\Model\TitleInfo.cs" />
     <Compile Include="Scripts\Model\TitlesEdit.cs" />
+    <Compile Include="Scripts\Model\XML.cs" />
     <Compile Include="Scripts\ViewModel\FilterMenuPageVM.cs" />
     <Compile Include="Scripts\ViewModel\SearchPageVM.cs" />
     <Compile Include="Scripts\ViewModel\TitlePageVM.cs" />
@@ -115,9 +116,16 @@
     <Compile Include="Scripts\View\TitlePage.xaml.cs">
       <DependentUpon>TitlePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Scripts\View\TitlesList.xaml.cs">
+      <DependentUpon>TitlesList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scripts\View\WatchedListPage.xaml.cs">
       <DependentUpon>WatchedListPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Scripts\Styles\AddButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Scripts\Styles\CloseButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -158,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Scripts\View\TitlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\View\TitlesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

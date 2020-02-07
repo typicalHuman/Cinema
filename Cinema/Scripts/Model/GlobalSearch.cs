@@ -31,16 +31,21 @@ namespace Cinema.Scripts.Model
 
         private string[] GetLinks()
         {
-            Regex reg = new Regex("<a href=\"/title/tt.*?/?ref_=adv_li_i\"");
-            MatchCollection matches = reg.Matches(xmlString);
-            List<string> list = new List<string>();
-            for(int i = 0; i < matches.Count; i++)
+            if (xmlString != null)
             {
-                list.Add(matches[i].Groups[0].Value);
-                list[i] = list[i].Replace("<a href=\"/title/", "");
-                list[i] = list[i].Replace("/?ref_=adv_li_i\"", "");
+                Regex reg = new Regex("<a href=\"/title/tt.*?/?ref_=adv_li_i\"");
+
+                MatchCollection matches = reg.Matches(xmlString);
+                List<string> list = new List<string>();
+                for (int i = 0; i < matches.Count; i++)
+                {
+                    list.Add(matches[i].Groups[0].Value);
+                    list[i] = list[i].Replace("<a href=\"/title/", "");
+                    list[i] = list[i].Replace("/?ref_=adv_li_i\"", "");
+                }
+                return list.ToArray();
             }
-            return list.ToArray();
+            return default;
         }
     }
 }

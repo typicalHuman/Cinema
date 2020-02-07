@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Cinema.Scripts.Model;
 using System.Threading;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Cinema.Scripts.ViewModel
 {
@@ -128,6 +129,7 @@ namespace Cinema.Scripts.ViewModel
         {
             get => searchCommand ?? (searchCommand = new RelayCommand(obj =>
             {
+                App.SearchPageVM.StatusText = "Searching";
                 Search(obj);
             }));
         }
@@ -136,7 +138,7 @@ namespace Cinema.Scripts.ViewModel
         {
             SelectedIndex = 0;
             Navigate(obj.ToString());
-            App.SearchPageVM.ResultTitles = new ObservableCollection<TitleInfo>();
+            App.SearchPageVM.ResultTitles = new List<TitleInfo>();
             App.SearchPageVM.IsSearching = true;
             Task gettingFilms = Task.Run(() =>
             {

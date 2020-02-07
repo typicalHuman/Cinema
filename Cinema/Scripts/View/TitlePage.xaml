@@ -13,7 +13,11 @@
       Title="TitlePage" DataContext="{x:Static local:App.TitlePageVM}">
 
     <Grid Background="#1b1c1b">
-        <StackPanel HorizontalAlignment="Left"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Grid.ColumnSpan="2"
                                     Margin="5 10" MinHeight="120">
             <!--#region Title -->
             <StackPanel Orientation="Horizontal">
@@ -28,7 +32,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
-                <TextBlock  Text="{Binding TitleInfo.Title}" TextWrapping="Wrap" MaxWidth="400" Margin="5 0" 
+                <TextBlock  Text="{Binding TitleInfo.Title}" TextWrapping="Wrap" MaxWidth="390" Margin="5 0" 
                             FontSize="30" VerticalAlignment="Center"
                             FontWeight="Bold"/>
                 <TextBlock Text="{Binding TitleInfo.Year}" VerticalAlignment="Center"
@@ -81,5 +85,12 @@
             <TextBlock Text="{Binding StringFormat={}Writers: {0}, Path=TitleInfo.Writer}"
                        MaxWidth="600" TextWrapping="Wrap" Margin="5 5" />
         </StackPanel>
+
+        <!--#region Add to watched list -->
+        <ToggleButton Width="60" Height="60" HorizontalAlignment="Right" Grid.Column="1"
+                                        VerticalAlignment="Top" Style="{StaticResource AddButtonStyle}"
+                Margin="5">
+        </ToggleButton>
+        <!--#endregion-->
     </Grid>
 </Page>

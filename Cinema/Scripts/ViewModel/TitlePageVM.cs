@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace Cinema.Scripts.ViewModel
@@ -20,6 +17,24 @@ namespace Cinema.Scripts.ViewModel
             TitleInfo = (TitleInfo)App.SearchPageVM.ResultTitles[App.SearchPageVM.SelectedIndex].Clone();
             new TitlesEdit().RemoveTitleNumber(TitleInfo);
             SetColors();
+        }
+
+        #endregion
+
+        #region Commands
+
+        private RelayCommand addTitle;
+        public RelayCommand AddTitle
+        {
+            get
+            {
+                return addTitle ?? (addTitle = new RelayCommand(obj => 
+                {
+                    TitleInfo title = (TitleInfo)((TitleInfo)obj).Clone();
+                    new TitlesEdit().SetTitlesNumber(title, App.SearchPageVM.SelectedIndex);
+                    App.WatchedListVM.WatchedTitles.Add(title);
+                }));
+            }
         }
 
         #endregion

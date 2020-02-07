@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Projects\Cinema\Cinema\App.xaml
-8316200519
+10-1504634257
 
-221896852667
+241167904564
 130-867242382
-Scripts\Styles\CloseButtonStyle.xaml;Scripts\Styles\MaximizeButtonStyle.xaml;Scripts\Styles\TextBoxStyle.xaml;Scripts\View\FilterMenuPage.xaml;Scripts\View\MainWindow.xaml;Scripts\View\SearchPage.xaml;Scripts\View\TitlePage.xaml;Scripts\View\WatchedListPage.xaml;
+Scripts\Styles\AddButtonStyle.xaml;Scripts\Styles\CloseButtonStyle.xaml;Scripts\Styles\MaximizeButtonStyle.xaml;Scripts\Styles\TextBoxStyle.xaml;Scripts\View\FilterMenuPage.xaml;Scripts\View\MainWindow.xaml;Scripts\View\SearchPage.xaml;Scripts\View\TitlePage.xaml;Scripts\View\TitlesList.xaml;Scripts\View\WatchedListPage.xaml;
 
 False
 

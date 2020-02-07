@@ -14,11 +14,15 @@ namespace Cinema.Scripts.Model
 {
     public class Parsing
     {
-        public ObservableCollection<TitleInfo> ResultTitles { get; set; } = new ObservableCollection<TitleInfo>();
-        public ObservableCollection<TitleInfo> GetFilms(string name)
+        public List<TitleInfo> ResultTitles { get; set; } = new List<TitleInfo>();
+        public List<TitleInfo> GetFilms(string name)
         {
-            SetResultTitle(name);
-            return ResultTitles;
+            if (name != null)
+            {
+                SetResultTitle(name);
+                return ResultTitles;
+            }
+            return default;
         }
 
         #region Setters
@@ -39,10 +43,17 @@ namespace Cinema.Scripts.Model
                 tasks.Add(Load(link));
             }
             await Task.WhenAll(tasks);
+            SetTitles(tasks);
+        }
+
+        private void SetTitles(List<Task<TitleInfo>> tasks)
+        {
             for (int i = 0; i < tasks.Count; i++)
                 ResultTitles.Add(tasks[i].Result);
             new TitlesEdit().Edit(ResultTitles);
             App.SearchPageVM.ResultTitles = ResultTitles;
+            if (ResultTitles.Count == 0)
+                App.SearchPageVM.StatusText = "Nothing found";
         }
 
         TitleInfo GetTitle(string xml)

@@ -209,6 +209,12 @@ namespace Cinema.Scripts.Model
         }
         #endregion
 
+        #region IsAdded
+
+        public bool IsAdded { get; set; }
+
+        #endregion
+
         #region OnPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

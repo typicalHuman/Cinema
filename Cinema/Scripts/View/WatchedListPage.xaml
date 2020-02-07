@@ -3,10 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Cinema.Scripts.View"
+      xmlns:local="clr-namespace:Cinema"
+      xmlns:view="clr-namespace:Cinema.Scripts.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="WatchedListPage">
+      Title="WatchedListPage" DataContext="{x:Static local:App.WatchedListVM}">
+    
     <Grid Background="#1b1c1b">
+        <view:TitlesList ItemsSource="{Binding WatchedTitles}"/>
     </Grid>
 </Page>
