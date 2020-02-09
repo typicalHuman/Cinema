@@ -31,12 +31,7 @@ namespace Cinema.Scripts.Model
             sr.Close();
         }
 
-        public void Deserialize()
-        {
-            List<TitleInfo> tempList = _Deserialize();
-        }
-
-        private List<TitleInfo> _Deserialize()
+        public List<TitleInfo> Deserialize()
         {
             List <TitleInfo> coll = null;
             try
@@ -47,7 +42,7 @@ namespace Cinema.Scripts.Model
                 }
             }
             catch (FileNotFoundException) { }
-            return coll;
+            return coll ?? (coll = new List<TitleInfo>());
         }
     }
 

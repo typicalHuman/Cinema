@@ -6,10 +6,15 @@
       xmlns:local="clr-namespace:Cinema"
       xmlns:view="clr-namespace:Cinema.Scripts.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="400"
+      d:DesignHeight="450" d:DesignWidth="400" Foreground="LightGray" 
+      FontSize="20" FontFamily="Courier New" Name="WatchedList"
       Title="WatchedListPage" DataContext="{x:Static local:App.WatchedListVM}">
-    
+
     <Grid Background="#1b1c1b">
-        <view:TitlesList ItemsSource="{Binding WatchedTitles}"/>
+        <TextBlock Text="Nothing" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" Visibility="{Binding Visibility, UpdateSourceTrigger=PropertyChanged}">
+        </TextBlock>
+
+        <view:TitlesList ItemsSource="{Binding WatchedTitles, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Page>

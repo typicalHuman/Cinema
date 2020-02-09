@@ -28,6 +28,8 @@ namespace Cinema.Scripts.ViewModel
 
         #region NavigateCommands
 
+        public string lastPage { get; set; } = "Scripts/View/SearchPage.xaml";
+
         public void Navigate(string url)
         {
             Messenger.Default.Send<NavigateArgs>(new NavigateArgs(url));
@@ -40,6 +42,8 @@ namespace Cinema.Scripts.ViewModel
             {
                 return pageNavigateCommand ?? (pageNavigateCommand = new RelayCommand(obj =>
                 {
+                    if(!obj.ToString().Contains("Title"))
+                        lastPage = obj.ToString();
                     Navigate(obj.ToString());
                 }));
             }
@@ -53,6 +57,7 @@ namespace Cinema.Scripts.ViewModel
         {
             get => closeCommand ?? (closeCommand = new RelayCommand(obj =>
             {
+                new XML().Serialize(App.WatchedListVM.WatchedTitles);
                 CloseAction();
             }));
 
@@ -129,6 +134,7 @@ namespace Cinema.Scripts.ViewModel
         {
             get => searchCommand ?? (searchCommand = new RelayCommand(obj =>
             {
+                App.SearchPageVM.StatusVisibility = Visibility.Hidden;
                 App.SearchPageVM.StatusText = "Searching";
                 Search(obj);
             }));

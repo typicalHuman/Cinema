@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Cinema.Scripts.Model;
+using System.Windows;
 
 namespace Cinema.Scripts.ViewModel
 {
     public class WatchedListVM : INotifyPropertyChanged
     {
-        #region Commands
-
-        #endregion
 
         #region Properties
 
@@ -22,11 +20,33 @@ namespace Cinema.Scripts.ViewModel
         private List<TitleInfo> watchedTitles = new List<TitleInfo>();
         public List<TitleInfo> WatchedTitles
         {
-            get => watchedTitles;
+            get
+            {
+                if (watchedTitles?.Count > 0)
+                    Visibility = Visibility.Hidden;
+                else
+                    Visibility = Visibility.Visible;
+                return watchedTitles;
+            }
             set
             {
                 watchedTitles = value;
                 OnPropertyChanged("WatchedTitles");
+            }
+        }
+
+        #endregion
+
+        #region StatusTextVisibility
+
+        private Visibility visibility = Visibility.Visible;
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged("Visibility");
             }
         }
 

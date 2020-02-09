@@ -11,7 +11,7 @@ using Cinema.Scripts.Model;
 
 namespace Cinema.Scripts.ViewModel
 {
-    public class SearchPageVM: INotifyPropertyChanged
+    public class SearchPageVM : INotifyPropertyChanged
     {
 
         #region Constructor
@@ -24,22 +24,32 @@ namespace Cinema.Scripts.ViewModel
 
 
         #region Commands
-        #region TitleInfoCommand
+        #region NavigateTitleCommand
         private RelayCommand navigateTitleCommand;
         public RelayCommand NavigateTitleCommand
         {
             get
             {
-                return navigateTitleCommand ?? (navigateTitleCommand = new RelayCommand(obj => 
+                return navigateTitleCommand ?? (navigateTitleCommand = new RelayCommand(obj =>
                 {
+
                     int dotIndex = obj.ToString().IndexOf('.');
-                    string parseNumber = obj.ToString().Remove(dotIndex);
-                    SelectedIndex = int.Parse(parseNumber) - 1;
-                    App.MainVM.Navigate(@"Scripts\View\TitlePage.xaml");
-                    App.TitlePageVM = new TitlePageVM();
+                    if (dotIndex > -1 && dotIndex < 4)// for dots in name
+                    {
+                        int titleNumber = int.Parse(obj.ToString().Remove(dotIndex));
+                        TitleInfo title = null;
+                        if (App.MainVM.lastPage.Contains("Search"))
+                             title = App.SearchPageVM.ResultTitles[titleNumber - 1];
+                        else
+                            title = App.WatchedListVM.WatchedTitles[titleNumber - 1];
+                        App.TitlePageVM = new TitlePageVM(title);
+                        App.MainVM.Navigate("Scripts/View/TitlePage.xaml");
+                    }
+
                 }));
             }
         }
+
         #endregion
         #endregion
 
@@ -55,7 +65,10 @@ namespace Cinema.Scripts.ViewModel
         private List<TitleInfo> resultTitles;
         public List<TitleInfo> ResultTitles
         {
-            get => resultTitles;
+            get
+            {
+                return resultTitles;
+            }
             set
             {
                 resultTitles = value;
@@ -93,9 +106,7 @@ namespace Cinema.Scripts.ViewModel
         }
         #endregion
 
-        #region 
-
-
+        #region StatusText
         private string statusText = "Searching";
         public string StatusText
         {
@@ -106,6 +117,27 @@ namespace Cinema.Scripts.ViewModel
                 OnPropertyChanged("StatusText");
             }
         }
+        #endregion
+
+        #region StatusVisibility
+
+        private Visibility statusVisibility = Visibility.Visible;
+        public Visibility StatusVisibility
+        {
+            get => statusVisibility;
+            set
+            {
+                statusVisibility = value;
+                OnPropertyChanged("StatusVisibility");
+            }
+        }
+
+        #endregion
+
+
+        #region 
+
+
 
         #endregion
 
@@ -120,6 +152,3 @@ namespace Cinema.Scripts.ViewModel
         #endregion
     }
 }
-
-
-//стиль для кнопки добавления(удалить / добавить), xml

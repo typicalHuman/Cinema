@@ -28,7 +28,7 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding PageNavigateCommand}"
-                                           CommandParameter="Scripts/View/SearchPage.xaml"/>
+                                           CommandParameter="{Binding lastPage}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
@@ -89,7 +89,18 @@
         <!--#region Add to watched list -->
         <ToggleButton Width="60" Height="60" HorizontalAlignment="Right" Grid.Column="1"
                                         VerticalAlignment="Top" Style="{StaticResource AddButtonStyle}"
+                      IsChecked="{Binding TitleInfo.IsAdded}"
                 Margin="5">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding AddTitle}"
+                                           CommandParameter="{Binding TitleInfo}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding RemoveTitle}"
+                                           CommandParameter="{Binding TitleInfo}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </ToggleButton>
         <!--#endregion-->
     </Grid>

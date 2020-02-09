@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -231,6 +232,14 @@ namespace Cinema.Scripts.Model
         {
             return MemberwiseClone();
         }
+
         #endregion
+
+        public bool Compare(TitleInfo y)
+        {
+            if (Title == y.Title && Director == y.director && Writer == y.Writer && GenresString == y.GenresString)
+                return true;
+            return false;
+        }
     }
 }

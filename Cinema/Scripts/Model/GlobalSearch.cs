@@ -11,7 +11,7 @@ namespace Cinema.Scripts.Model
 {
     public class GlobalSearch
     {
-        private string xmlString { get; set; }
+        private string htmlString { get; set; }
 
         public string[] GetIDs(string name)
         {
@@ -24,18 +24,18 @@ namespace Cinema.Scripts.Model
             if (name != null)
             {
                 name.Replace(" ", "+");
-                xmlString = new Parsing().GetXMLString(new Link().GetGlobalLink(name));
+                htmlString = new Parsing().GetHTMLString(new Link().GetGlobalLink(name));
                 GetLinks();
             }
         }
 
         private string[] GetLinks()
         {
-            if (xmlString != null)
+            if (htmlString != null)
             {
                 Regex reg = new Regex("<a href=\"/title/tt.*?/?ref_=adv_li_i\"");
 
-                MatchCollection matches = reg.Matches(xmlString);
+                MatchCollection matches = reg.Matches(htmlString);
                 List<string> list = new List<string>();
                 for (int i = 0; i < matches.Count; i++)
                 {

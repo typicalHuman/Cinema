@@ -169,8 +169,8 @@ namespace Cinema.Scripts.Model
         }
 
         #endregion
-        #region XML
-        public string GetXMLString(string url)
+        #region HTML
+        public string GetHTMLString(string url)
         {
             WebClient web = new WebClient();
             return web.DownloadString(url);

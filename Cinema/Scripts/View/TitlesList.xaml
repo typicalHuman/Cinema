@@ -7,8 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d"  Name="TitleList"
              d:DesignHeight="450" d:DesignWidth="800"
-             Foreground="White" FontSize="20" FontFamily="Courier New"
-             >
+             Foreground="White" FontSize="20" FontFamily="Courier New">
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding ItemsSource, ElementName=TitleList, UpdateSourceTrigger=PropertyChanged}"
@@ -27,14 +26,15 @@
                                                    Name="TitleBox"/>
                                         <TextBlock>
                                             <Hyperlink NavigateUri="TitlePage.xaml" DataContext="{x:Static local:App.SearchPageVM}"
-                                                       Foreground="#136cb2">
+                                                       Foreground="#136cb2" >
                                                 <TextBlock Text="{Binding ElementName=TitleBox, Path=Text}" TextWrapping="Wrap"
                                                            MaxWidth="400" Margin="5 0" 
                                            VerticalAlignment="Top" DockPanel.Dock="Left"/>
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="RequestNavigate">
                                                         <i:InvokeCommandAction Command="{Binding NavigateTitleCommand}"
-                                                                               CommandParameter="{Binding ElementName=TitleBox, Path=Text}"/>
+                                                                               CommandParameter="{Binding ElementName=TitleBox, Path=Text}">
+                                                        </i:InvokeCommandAction>
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                             </Hyperlink>

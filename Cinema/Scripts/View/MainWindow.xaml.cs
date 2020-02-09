@@ -1,4 +1,5 @@
-﻿using Cinema.Scripts.ViewModel;
+﻿using Cinema.Scripts.Model;
+using Cinema.Scripts.ViewModel;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Cinema
             InitializeComponent();
             App.MainVM.CloseAction = Close;
             NavigationSetup();
+            App.WatchedListVM.WatchedTitles = new XML().Deserialize();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -19,7 +19,6 @@ namespace Cinema
         public static FilterMenuPageVM FilterMenuPageVM { get; set; }
         public static WatchedListVM WatchedListVM { get; set; }
         public static TitlePageVM TitlePageVM { get; set; }
-
         public App()
         {
             MainVM = new MainVM();
