@@ -127,7 +127,6 @@ E:\Projects\Cinema\Cinema\obj\Debug\Cinema.csproj.GenerateResource.cache
 E:\Projects\Cinema\Cinema\obj\Debug\Cinema.csproj.CopyComplete
 E:\Projects\Cinema\Cinema\obj\Debug\Cinema.exe
 E:\Projects\Cinema\Cinema\obj\Debug\Cinema.pdb
-E:\Projects\Cinema\Cinema\obj\Debug\Cinema.csprojAssemblyReference.cache
 E:\Projects\Cinema\Cinema\bin\Debug\HtmlAgilityPack.dll
 E:\Projects\Cinema\Cinema\bin\Debug\HtmlAgilityPack.pdb
 E:\Projects\Cinema\Cinema\bin\Debug\HtmlAgilityPack.xml
